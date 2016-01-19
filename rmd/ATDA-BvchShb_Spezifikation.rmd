@@ -111,11 +111,11 @@ objSecEnum$initSectionEnumerator()
 
 \fcolorbox{black}{white}{
 	\parbox[t]{1.0\linewidth}{
-		\centering \fontsize{25pt}{40pt}\selectfont % The first argument for fontsize is the font size of the text and the second is the line spacing - you may need to play with these for your particular title
+		\centering \fontsize{25pt}{40pt}\selectfont % 
 		\vspace*{0.7cm} 
-    ATDA-BvchShb\\
+    ATDA-ASR                           \\
     Automatisierter Tierdatenaustausch \\
-    zwischen Melksystemen und ARGUS\\
+    zwischen Melksystemen und ARGUS    \\
 		
 		\vspace*{0.7cm} % Space between the end of the title and the bottom of the grey box
 	}
@@ -150,6 +150,9 @@ AG ZT DL, ASR                        &  FB EDV, Qualitas AG\\
 |  0.0.0.901  |  13.01.2016      |  PvR  |  Aktuelle Situation und Projektziele         |
 +-------------+------------------+-------+----------------------------------------------+
 |  0.0.0.902  |  18.01.2016      |  PvR  |  Projektziele undAblauf des Datentransfers   |
++-------------+------------------+-------+----------------------------------------------+
+|  0.0.0.903  |  19.01.2016      |  PvR  |  Projektauftraggeber von BvchShb zu ASR      |
+|             |                  |       |  gewechselt                                  |
 +-------------+------------------+-------+----------------------------------------------+
 
 
@@ -193,7 +196,7 @@ AG ZT DL, ASR                        &  FB EDV, Qualitas AG\\
 
 
 # Erklärung
-Dieses Dokument enthält die Spezifikation für das Projekt zum automatisierten Tierdatenaustausch (ATDA), welches von BVCH und SHB über die Arbeitsgruppe zuchttechnische Dienstleistungen der ASR in Auftrage gegeben wurde.
+Dieses Dokument enthält die Spezifikation für das Projekt zum automatisierten Tierdatenaustausch (ATDA), welches von der Arbeitsgruppe zuchttechnische Dienstleistungen der Arbeitsgemeinschaft Schweizer Rinderzüchter (ASR) in Auftrage gegeben wurde.
 
 
 
@@ -214,7 +217,7 @@ Die Standardprozedur für den Transfer von Milchleistungsdaten bei Betrieben, we
 
 ![Diagramm Milchdatenfluss](../fig/Diagramm_Milchdatenfluss.pdf)
 
-Betriebe mit Robotermelkanlagen oder mit Melkständen, bei welchen die Milchmengen durch ein Informationssystem vollautomatisch erfasst werden, unterliegen bezüglich des Datentransfers der gleichen  Standardprozedur, mit Ausnahme, dass die Milchmengen nicht von den Kontrolleuren gemessen werden, sondern aus dem Informationssystem der Melkanlage abgerufen werden. Die Milchmengendaten werden vom Kontrolleur manuell vom Informationssystem der Melkanlage auf das Formular übertragen, welches dann bei der Zuchtorganisation wieder eingescannt wird. Die manuelle Übertragung der Daten auf das Formular ist zeitaufwändig, fehleranfällig und unnötig. Ein Ziel dieses Projektes ist, die manuelle Datenübertragung durch eine direkte elektronische Übertragung der Milchmengendaten zwischen dem Informationssystem der Melkanlage und ARGUS (Informationssystem bei Qualitas) zu ersetzen. 
+Betriebe mit Robotermelkanlagen oder mit Melkständen, bei welchen die Milchmengen durch ein Informationssystem vollautomatisch erfasst werden, unterliegen bezüglich des Datentransfers der gleichen  Standardprozedur, mit Ausnahme, dass die Milchmengen nicht von den Kontrolleuren gemessen werden, sondern aus dem Informationssystem der Melkanlage abgerufen werden. Die Milchmengendaten werden vom Kontrolleur manuell vom Informationssystem der Melkanlage auf das Formular übertragen, welches dann bei der Zuchtorganisation wieder eingescannt wird. Die manuelle Übertragung der Daten auf das Formular ist zeitaufwändig, fehleranfällig und unnötig. Ein Ziel dieses Projektes ist, die manuelle Datenübertragung durch eine direkte elektronische Übertragung der Milchmengendaten zwischen dem Informationssystem der Melkanlage und dem Informationssystem bei Qualitas (ARGUS) zu ersetzen. 
 
 
 ```{r echo=FALSE,results='asis'}
@@ -245,16 +248,15 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Dieses Projekt befasst sich mit dem automatisierten Tierdatenaustausch. 
+Das in diesem Dokument beschriebene Projekt befasst sich mit dem automatisierten Tierdatenaustausch zwischen Informationssystemen einer Melkanlage (ISM) und dem Informationssystem von Qualitas (ARGUS). Dieses Projekt wurde von der ASR initiiert und wird in Zusammenarbeit mit Qualitas umgesetzt. Von nun an wird das in diesem Dokument beschriebene  Projekt mit __ATDA-ASR__ bezeichnet.
 
 ```{r echo=FALSE,results='asis'}
 objSecEnum$setUnNumSection(psUnNumSection = 
-"### Software-System für den automatisierten Datenaustausch (SSAD)")
+"### Software-System für den automatisierten Tierdatenaustausch (SSATDA-ASR)")
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Das Endprodukt dieses Projektes
-
+Das Endprodukt des Projektes (ATDA-ASR) ist ein Software-System bestehend aus verschiedenen Programmen. Diese Programme entsprechen der umgesetzen Lösung des Projektes ATDA-ASR. Von nun an wird dieses Software-System mit __SSATDA-ASR__ bezeichnet.
 
 
 ```{r echo=FALSE,results='asis'}
@@ -265,7 +267,7 @@ objSecEnum$displayNumSection()
 ```
 Bei ICAR läuft das Projekt "ICAR-ADE" mit dem Ziel eine Grundlage für den automatisierten Austausch von Tierdaten zu erstellen. Im Projekt "ICAR-ADE" wird eine eigenständige Lösung für den automatischen Austausch von Tierdaten angestrebt. Das heisst es werden neue Datentypen und Schnittstellen aufgrund von existierenden Standards von W3C, UNCEFACT oder ISO definiert. Diese Definitionen dienen dann als Grundlage für eine unabhängige Umsetzung des Datenaustauschs. Der Vorteil dieser Lösung ist die Unabhängigkeit von bestehenden Lösungen und all ihren Einschränkungen. Ein offensichtlicher Nachteil ist die Redundanz mit anderen schon bestehenden Datenaustauschlösungen. Dieser Nachteil führt dazu, dass eine  Umsetzung des Projekts sehr zeitaufwändig ist. Da das Projekt "ICAR-ADE" immer noch in der technischen Planungsphase steckt, wird die Umsetzung einer konkreten Lösung noch eine Weile auf sich warten lassen.
 
-Da das Projekt "ICAR-ADE" noch in der Anfangsphase steckt und somit der automatisierten Datenaustausch mittelfristig noch nicht zur Verfügung steht, haben sich die Zuchtorganisationen BVCH und SHB entschieden, selber ein nationales Projekt mit dem Ziel des automatisierten Datenaustauschs zu starten. Dieses Projekt nennen wir hier "ATDA-BvchShb". Im folgenden Text wird das Projekt "ATDA-BvchShb" genauer beschrieben werden.
+Das Projekt "ICAR-ADE" steckt noch in der Anfangsphase. Da der automatisierte Datenaustausch über das Projekt "ICAR_ADE" mittelfristig noch nicht zur Verfügung steht, hat sich die ASR entschieden, selber ein nationales Projekt mit dem Ziel des automatisierten Tierdatenaustauschs (ATDA-ASR) zu starten. Im folgenden Text wird das Projekt "ATDA-ASR" genauer beschrieben werden.
 
 
 \vspace{1ex}
@@ -320,7 +322,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-
+Die Erfassung der Mutationen und der Änderungen des Laktationsstatus von Kühen auf den jeweiligen Betrieben durch den Milchkontrolleur dient als Kontrolle für das System SSATDA-ASR.
 
 \vspace{1ex}
 ```{r echo=FALSE,results='asis'}
