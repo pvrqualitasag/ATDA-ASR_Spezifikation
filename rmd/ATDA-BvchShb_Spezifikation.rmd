@@ -1,0 +1,301 @@
+---
+output: pdf_document
+---
+
+```{r SectionNumber, echo=FALSE,results='hide'}
+#' reference Class for section counting
+sectionCount <- setRefClass(Class   = "SectionCount",
+                            fields  = list(nSectionCount       = "numeric",
+                                           nSubSectionCount    = "numeric", 
+                                           nSubSubsectionCount = "numeric",
+                                           sHash               = "character",
+                                           sCountSep           = "character"),
+                            methods = list(
+                              init = function(){
+                                nSectionCount       <<- 0
+                                nSubSectionCount    <<- 0
+                                nSubSubsectionCount <<- 0
+                                sCountSep           <<- "."
+                              },
+                              setHash = function(psHash){
+                                sHash <<- psHash
+                              },
+                              incrSectionCounts = function(){
+                                nNrHash <- nchar(sHash)
+                                if (nNrHash == 3){
+                                  nSubSubsectionCount <<- nSubSubsectionCount + 1
+                                } else if(nNrHash == 2){
+                                  nSubSectionCount <<- nSubSectionCount + 1
+                                  nSubSubsectionCount <<- 0
+                                } else if(nNrHash == 1){
+                                  nSectionCount <<- nSectionCount + 1
+                                  nSubSubsectionCount <<- 0
+                                  nSubSectionCount <<- 0
+                                }
+                              },
+                              sGetSectionNumber = function(){
+                                sSectionNumberResult <- NULL
+                                if (nSectionCount > 0) 
+                                  sSectionNumberResult <- as.character(nSectionCount)
+                                if (nSubSectionCount > 0)
+                                  sSectionNumberResult <- paste(sSectionNumberResult,
+                                                                as.character(nSubSectionCount),
+                                                                sep = sCountSep)
+                                if (nSubSubsectionCount > 0)
+                                  sSectionNumberResult <- paste(sSectionNumberResult,
+                                                                as.character(nSubSubsectionCount),
+                                                                sep = sCountSep)
+                                return(sSectionNumberResult)
+                              }
+                            ))
+
+
+#' Reference class for automatically enumerating section titles
+SectionEnumerator <- setRefClass(Class   = "SectionEnumerator",
+                                 fields  = list(sUnNumSection     = "character",
+                                                rcSectionCount    = "SectionCount",
+                                                sHash             = "character",
+                                                sRemCaption       = "character",
+                                                sNumCaptionResult = "character",
+                                                sSectionSplit     = "character",
+                                                nNrHash           = "numeric"
+                                                ),
+                                 methods = list(
+                                   initSectionEnumerator = function(){
+                                     sUnNumSection     <<- ""
+                                     sHash             <<- ""
+                                     sRemCaption       <<- ""
+                                     sNumCaptionResult <<- ""
+                                     sSectionSplit     <<- " "
+                                     rcSectionCount$init()
+                                   },
+                                   setUnNumSection = function(psUnNumSection){
+                                     sUnNumSection <<- psUnNumSection
+                                   },
+                                   parseUnNumSection = function(){
+                                     vecUnNumCaption <- unlist(strsplit(sUnNumSection,sSectionSplit))
+                                     sHash <<- vecUnNumCaption[1]
+                                     nNrHash <<- nchar(sHash)
+                                     sRemCaption <<- paste0(vecUnNumCaption[2:length(vecUnNumCaption)], 
+                                                            collapse = " ")
+                                     rcSectionCount$setHash(psHash = sHash)
+                                     rcSectionCount$incrSectionCounts()
+                                     sNumCaptionResult <<- paste(sHash,
+                                                                 rcSectionCount$sGetSectionNumber(),
+                                                                 sRemCaption)
+                                                                 
+                                   },
+                                   displayNumSection = function(){
+                                     cat(sNumCaptionResult, "\n")  
+                                   }
+                                 ))
+# construct SectionEnumerator obj
+objSecEnum <- SectionEnumerator$new()
+objSecEnum$initSectionEnumerator()
+```
+
+![Qualitas-Logo](../fig/QualitasLogo.png)
+
+\fcolorbox{black}{white}{
+	\parbox[t]{1.0\linewidth}{
+		\centering \fontsize{12pt}{20pt}\selectfont % The first argument for fontsize is the font size of the text and the second is the line spacing - you may need to play with these for your particular title
+		\vspace*{0.5cm} % Space between the start of the title and the top of the grey box
+		
+		\hfill Spezifikation     % put this text right adjusted
+		
+		\vspace*{0.5cm} % Space between the end of the title and the bottom of the grey box
+	}
+}
+
+\vspace*{0.5cm}
+
+\fcolorbox{black}{white}{
+	\parbox[t]{1.0\linewidth}{
+		\centering \fontsize{25pt}{40pt}\selectfont % The first argument for fontsize is the font size of the text and the second is the line spacing - you may need to play with these for your particular title
+		\vspace*{0.7cm} 
+    ATDA-BvchShb\\
+    Automatisierter Tierdatenaustausch \\
+    zwischen Melksystemen und ARGUS\\
+		
+		\vspace*{0.7cm} % Space between the end of the title and the bottom of the grey box
+	}
+}
+
+\vspace*{1cm}
+
+\begin{center}
+\includegraphics[width=0.5\textwidth]{../fig/Pedigree.png}
+\end{center}
+
+\vspace{5ex}
+{\centering \small
+\hfill
+\begin{tabular}{ll}
+Sarah Göhrlich                       &  Peter von Rohr\\
+AG ZT DL, ASR                        &  FB EDV, Qualitas AG\\
+\verb+http://www.asr-ch.ch+          &  \verb+http://www.qualitasag.ch+\\
+\verb+sarah.goerlich@qualitasag.ch+  &  \verb+peter.vonrohr@qualitasag.ch+
+\end{tabular}
+}
+
+\pagebreak
+
+# Dokumentenstatus
+
++-------------+------------------+-------+-------------------------------------------+
+|  Version    |  Datum           |  Wer  |  Änderung                                 |
++=============+==================+=======+===========================================+
+|  0.0.0.900  |  11.01.2016      |  PvR  |  Erstellung                               |
++-------------+------------------+-------+-------------------------------------------+
+|  0.0.0.901  |  13.01.2016      |  PvR  |  Aktuelle Situation und Projektziele      |
++-------------+------------------+-------+-------------------------------------------+
+
+
+
+
+# Abkürzungen
+
++-------------+-------------------------------------------------------------------------+
+|  Abkürzung  |  Bedeutung                                                              |
++=============+=========================================================================+
+| AG ZT DL    |  Arbeitsgruppe zuchttechnische Dienstleistungen                         |
++-------------+-------------------------------------------------------------------------+
+| ASR         |  Arbeitsgemeinschaft Schweizer Rinderzüchter                            |
++-------------+-------------------------------------------------------------------------+
+| FB EDV      |  Fachbereich elektronische Datenverarbeitung                            |
++-------------+-------------------------------------------------------------------------+
+| ATDA        |  Automatisierter Tierdatenaustausch                                       |
++-------------+-------------------------------------------------------------------------+
+| BVCH        |  Braunvieh Schweiz                                                      |
++-------------+-------------------------------------------------------------------------+
+| SHB         |  Swissherdbook                                                          |
++-------------+-------------------------------------------------------------------------+
+| ICAR        |  International Committee for Animal Recording                           |
++-------------+-------------------------------------------------------------------------+
+| ADE         |  "Animal Data Exchange", Austausch von Tierdaten                        |
++-------------+-------------------------------------------------------------------------+
+| ICAR-ADE    |  Projekt für den Austausch von Tierdaten von ICAR                       |
++-------------+-------------------------------------------------------------------------+
+| ARGUS       |  Informationssystem für brunaNet, redonline+, etc                       |
++-------------+-------------------------------------------------------------------------+
+| ISM         |  Informationssystem der Melkanlage                                      |
++-------------+-------------------------------------------------------------------------+
+| W3C         |  World Wide Web Consortium                                              |
++-------------+-------------------------------------------------------------------------+
+|  UNCEFACT   |  United Nations Center for Trade Fascilitation and Electronic Business  |
++-------------+-------------------------------------------------------------------------+
+
+
+
+# Erklärung
+Dieses Dokument enthält die Spezifikation für das Projekt zum automatisierten Tierdatenaustausch (ATDA), welches von BVCH und SHB über die Arbeitsgruppe zuchttechnische Dienstleistungen der ASR in Auftrage gegeben wurde.
+
+
+
+\vspace{1ex}
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"# Ausgangslage")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"## Aktuelle Situation betreffend Datenaustausch")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Die Standardprozedur für den Transfer von Milchleistungsdaten bei Betrieben, welche sich bei der Milchleistungsprüfung der Zuchtverbände (BVCH und SHB) beteiligen, sieht so aus, dass ein Milchkontrolleur monatlich Milchproben und gemessene Milchmengen von einem Betrieb abholt. Die Milchmengen werden auf vorgedruckte Formulare manuell eingetragen. Die ausgefüllten Formulare werden dann an die Zuchtorganisationen geschickt und dort per Scanner in das Informationssystem (ARGUS) von Qualitas eingelesen. 
+
+Betriebe mit Robotermelkanlagen oder mit Melkständen, bei welchen die Milchmengen durch ein Informationssystem vollautomatisch erfasst werden, unterliegen bezüglich des Datentransfers der gleichen  Standardprozedur, mit Ausnahme, dass die Milchmengen nicht von den Kontrolleuren gemessen werden, sondern aus dem Informationssystem der Melkanlage abgerufen und ausgedruckt werden. Die ausgedruckten Daten werden vom Kontrolleur manuell vom Ausdruck auf das Formular übertragen, welches dann bei der Zuchtorganisation wieder eingescannt wird. Die manuelle Übertragung der Daten vom Ausdruck auf das Formular ist zeitaufwändig, fehleranfällig und  unnötig. Ein Ziel dieses Projektes ist die manuelle Datenübertragung durch eine direkte elektronische Übertragung der Milchmengendaten zwischen dem Informationssystem der Melkanlage und ARGUS (Informationssystem bei Qualitas) zu ersetzen. 
+
+
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"## Terminologie und Gültigkeitsbereich")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"### Melkanlage")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Als zwingende Voraussetzung damit ein Betrieb in diesem Projekt berücksichtigt werden kann, ist eine Melkanalage, welche mindestens die Menge jedes Gemelks misst und diese Messung in einem Informationssystem dauerhaft abspeichert. Diese Vorausstetzung dürfte von Robotermelkanlagen und von gewissen Melkständen erfüllt sein. Als Konvention werden von nun an Robotermelkanlagen und Melkstände, welche die Voraussetzung der Erfassung und Speicherung der Milchmengendaten erfüllen einfach als __Melkanlagen__ bezeichnet. 
+
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"### Informationssystem der Melkanlage")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Die erfassten Milchmengendaten werden in einem Informationssystem gespeichert. Ein solches Informationssystem beinhaltet als zentrale Komponente eine Datenbank. Diese Datenbank wird durch Softwareprogramme ergänzt, welche das Datenmanagement und den Unterhalt der Datenbank für die Benutzer erleichtern. Das Informationssystem zur Speicherung der Milchmengendaten wird von nun an als __Informationssystem der Melkanlage__ (ISM) bezeichnet. 
+
+
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"## Andere Datenaustauschprojekte")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Bei ICAR läuft das Projekt "ICAR-ADE" mit dem Ziel eine Grundlage für den automatisierten Austausch von Tierdaten zu erstellen. Im Projekt "ICAR-ADE" wird eine eigenständige Lösung für den automatischen Austausch von Tierdaten angestrebt. Das heisst es werden neue Datentypen und Schnittstellen aufgrund von existierenden Standards von W3C, UNCEFACT oder ISO definiert. Diese Definitionen dienen dann als Grundlage für eine unabhängige Umsetzung des Datenaustauschs. Der Vorteil dieser Lösung ist die Unabhängigkeit von bestehenden Lösungen und all ihren Einschränkungen. Als offensichtlicher Nachteil ist die Redundanz mit schon bestehenden Datenaustauschlösungen zu betrachten. Dieser Nachteil führt auch dazu, dass eine  Umsetzung des Projekts sehr viel zeitaufwändig ist. Da das Projekt "ICAR-ADE" immer noch in der technischen Planungsphase steckt, wird die Umsetzung einer konkreten Lösung noch eine Weile auf sich warten lassen.
+
+Da das Projekt "ICAR-ADE" noch in der Anfangsphase steckt und somit der automatisierten Datenaustausch mittelfristig noch nicht zur Verfügung steht, haben sich die Zuchtverbände BVCH und SHB entschieden, selber ein nationales Projekt mit dem Ziel des automatisierten Datenaustauschs zu starten. Dieses Projekt nennen wir hier "ATDA-BvchShb". Im folgenden Text wird das Projekt "ATDA-BvchShb" genauer beschrieben werden.
+
+
+\vspace{1ex}
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"# Ziele")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"## Primäre Zielsetzung")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Das primäre Ziel dieses Projekts ist, die manuelle Übertragung von Milchmengendaten durch Milchkontrolleure auf Betrieben mit entsprechenden Melksystemen zu ersetzen mit einer direkten elektronischen Übertragung der Milchleistungsdaten vom Informationssystem der Melkanlage zum Informationssystem von Qualitas (ARGUS). 
+
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"## Funktionale Zielsetzung")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Der Datentransfers zwischen Melksystem und ARGUS muss im Normalbetrieb ohne manuelle Intervention einer Person funktionieren. Manuelle Interventionen einer Person sollen nur im Fall eines Fehlers erforderlich sein. 
+
+
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"## Erweiterte Zielsetzungen")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Der automatisierte Datentransfer zwischen Melksystemen und ARGUS soll in beiden Richtungen, also nicht nur vom Melksystem zu ARGUS sondern auch von ARGUS zum Melksystem funktionieren. Somit können bei einer Neuinstallation einer Melkanalage die Daten von ARGUS ins Informationssystem der Melkanlage übertragen werden.
+
+
+
+\vspace{1ex}
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"# Ablauf des Datentransfers")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Für die in diesem Projekt berücksichtigten Betriebe laufen die Milchkontrollen gleich ab wie für alle anderen Betriebe, ausser dass der Milchkontrolleur die Milchleistungsdaten nicht mehr auf das vorgedruckte Formular einträgt. Auf dem vorgedruckten Formular von Qualitas werden nur noch  Zugänge, Abgänge oder Änderungen des Laktationsstatus von Kühen erfasst. 
+
+Das Datum der Milchkontrolle dient als Stichdatum für den automatisierten Datentransfer der Milchleistungsdaten. Sobald die Milchanalyseergebnisse für einen bestimmten Betrieb bei Qualitas eingetroffen sind, wird der Datentransfer der Milchmengen für den entsprechenden Betrieb ausgelöst. 
+
+
+\vspace{1ex}
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"# Abgrenzung")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+In diesem Projekt beschränken wir uns auf den Austausch von Milchleistungsdaten zwischen Roboteranlagen und dem Datenbanksystem ARGUS von Qualitas. Der Austausch von weiteren Daten wird in anderen Projekten umgesetzt werden. 
+
