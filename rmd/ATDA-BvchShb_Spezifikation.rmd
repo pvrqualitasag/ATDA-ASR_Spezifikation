@@ -131,7 +131,7 @@ objSecEnum$initSectionEnumerator()
 {\centering \small
 \hfill
 \begin{tabular}{ll}
-Sarah Göhrlich                       &  Peter von Rohr\\
+Sarah Görlich                        &  Peter von Rohr\\
 AG ZT DL, ASR                        &  FB EDV, Qualitas AG\\
 \verb+http://www.asr-ch.ch+          &  \verb+http://www.qualitasag.ch+\\
 \verb+sarah.goerlich@qualitasag.ch+  &  \verb+peter.vonrohr@qualitasag.ch+
@@ -142,14 +142,15 @@ AG ZT DL, ASR                        &  FB EDV, Qualitas AG\\
 
 # Dokumentenstatus
 
-+-------------+------------------+-------+-------------------------------------------+
-|  Version    |  Datum           |  Wer  |  Änderung                                 |
-+=============+==================+=======+===========================================+
-|  0.0.0.900  |  11.01.2016      |  PvR  |  Erstellung                               |
-+-------------+------------------+-------+-------------------------------------------+
-|  0.0.0.901  |  13.01.2016      |  PvR  |  Aktuelle Situation und Projektziele      |
-+-------------+------------------+-------+-------------------------------------------+
-
++-------------+------------------+-------+----------------------------------------------+
+|  Version    |  Datum           |  Wer  |  Änderung                                    |
++=============+==================+=======+==============================================+
+|  0.0.0.900  |  11.01.2016      |  PvR  |  Erstellung                                  |
++-------------+------------------+-------+----------------------------------------------+
+|  0.0.0.901  |  13.01.2016      |  PvR  |  Aktuelle Situation und Projektziele         |
++-------------+------------------+-------+----------------------------------------------+
+|  0.0.0.902  |  18.01.2016      |  PvR  |  Projektziele undAblauf des Datentransfers   |
++-------------+------------------+-------+----------------------------------------------+
 
 
 
@@ -164,7 +165,7 @@ AG ZT DL, ASR                        &  FB EDV, Qualitas AG\\
 +-------------+-------------------------------------------------------------------------+
 | FB EDV      |  Fachbereich elektronische Datenverarbeitung                            |
 +-------------+-------------------------------------------------------------------------+
-| ATDA        |  Automatisierter Tierdatenaustausch                                       |
+| ATDA        |  Automatisierter Tierdatenaustausch                                     |
 +-------------+-------------------------------------------------------------------------+
 | BVCH        |  Braunvieh Schweiz                                                      |
 +-------------+-------------------------------------------------------------------------+
@@ -182,7 +183,11 @@ AG ZT DL, ASR                        &  FB EDV, Qualitas AG\\
 +-------------+-------------------------------------------------------------------------+
 | W3C         |  World Wide Web Consortium                                              |
 +-------------+-------------------------------------------------------------------------+
-|  UNCEFACT   |  United Nations Center for Trade Fascilitation and Electronic Business  |
+| UNCEFACT    |  United Nations Center for Trade Fascilitation and Electronic Business  |
++-------------+-------------------------------------------------------------------------+
+| ZO          |  Zuchtorganisation                                                      |
++-------------+-------------------------------------------------------------------------+
+| SSAD        |  Software-System für den automatisierten Datenaustausch                 |
 +-------------+-------------------------------------------------------------------------+
 
 
@@ -205,9 +210,11 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Die Standardprozedur für den Transfer von Milchleistungsdaten bei Betrieben, welche sich bei der Milchleistungsprüfung der Zuchtverbände (BVCH und SHB) beteiligen, sieht so aus, dass ein Milchkontrolleur monatlich Milchproben und gemessene Milchmengen von einem Betrieb abholt. Die Milchmengen werden auf vorgedruckte Formulare manuell eingetragen. Die ausgefüllten Formulare werden dann an die Zuchtorganisationen geschickt und dort per Scanner in das Informationssystem (ARGUS) von Qualitas eingelesen. 
+Die Standardprozedur für den Transfer von Milchleistungsdaten bei Betrieben, welche sich bei der Milchleistungsprüfung der Zuchtverbände (BVCH und SHB) beteiligen, sieht so aus, dass ein Milchkontrolleur monatlich Milchproben und gemessene Milchmengen von einem Betrieb abholt. Die Milchmengen werden während der Kontrolle auf dem Betrieb manuell auf vorgedruckte Formulare eingetragen. Die ausgefüllten Formulare werden dann an die Zuchtorganisationen geschickt und dort per Scanner in das Informationssystem (ARGUS) von Qualitas eingelesen. Das nachfolgende Diagramm versucht den Datenfluss anlässlich einer Milchkontrolle auf einem Betrieb schematisch darzustellen. 
 
-Betriebe mit Robotermelkanlagen oder mit Melkständen, bei welchen die Milchmengen durch ein Informationssystem vollautomatisch erfasst werden, unterliegen bezüglich des Datentransfers der gleichen  Standardprozedur, mit Ausnahme, dass die Milchmengen nicht von den Kontrolleuren gemessen werden, sondern aus dem Informationssystem der Melkanlage abgerufen und ausgedruckt werden. Die ausgedruckten Daten werden vom Kontrolleur manuell vom Ausdruck auf das Formular übertragen, welches dann bei der Zuchtorganisation wieder eingescannt wird. Die manuelle Übertragung der Daten vom Ausdruck auf das Formular ist zeitaufwändig, fehleranfällig und  unnötig. Ein Ziel dieses Projektes ist die manuelle Datenübertragung durch eine direkte elektronische Übertragung der Milchmengendaten zwischen dem Informationssystem der Melkanlage und ARGUS (Informationssystem bei Qualitas) zu ersetzen. 
+![Diagramm Milchdatenfluss](../fig/Diagramm_Milchdatenfluss.pdf)
+
+Betriebe mit Robotermelkanlagen oder mit Melkständen, bei welchen die Milchmengen durch ein Informationssystem vollautomatisch erfasst werden, unterliegen bezüglich des Datentransfers der gleichen  Standardprozedur, mit Ausnahme, dass die Milchmengen nicht von den Kontrolleuren gemessen werden, sondern aus dem Informationssystem der Melkanlage abgerufen werden. Die Milchmengendaten werden vom Kontrolleur manuell vom Informationssystem der Melkanlage auf das Formular übertragen, welches dann bei der Zuchtorganisation wieder eingescannt wird. Die manuelle Übertragung der Daten auf das Formular ist zeitaufwändig, fehleranfällig und unnötig. Ein Ziel dieses Projektes ist, die manuelle Datenübertragung durch eine direkte elektronische Übertragung der Milchmengendaten zwischen dem Informationssystem der Melkanlage und ARGUS (Informationssystem bei Qualitas) zu ersetzen. 
 
 
 ```{r echo=FALSE,results='asis'}
@@ -226,11 +233,28 @@ Als zwingende Voraussetzung damit ein Betrieb in diesem Projekt berücksichtigt 
 
 ```{r echo=FALSE,results='asis'}
 objSecEnum$setUnNumSection(psUnNumSection = 
-"### Informationssystem der Melkanlage")
+"### Informationssystem der Melkanlage (ISM)")
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Die erfassten Milchmengendaten werden in einem Informationssystem gespeichert. Ein solches Informationssystem beinhaltet als zentrale Komponente eine Datenbank. Diese Datenbank wird durch Softwareprogramme ergänzt, welche das Datenmanagement und den Unterhalt der Datenbank für die Benutzer erleichtern. Das Informationssystem zur Speicherung der Milchmengendaten wird von nun an als __Informationssystem der Melkanlage__ (ISM) bezeichnet. 
+Die erfassten Milchmengendaten werden in einem Informationssystem gespeichert. Ein solches Informationssystem beinhaltet als zentrale Komponente eine Datenbank. Diese Datenbank wird durch Softwareprogramme ergänzt, welche das Datenmanagement und den Unterhalt der Datenbank für die Benutzer erleichtern. Das Informationssystem zur Speicherung der Milchmengendaten wird von nun an als __Informationssystem der Melkanlage__ (ISM) bezeichnet.  
+
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"### Automatisierter Tierdatenaustausch (ATDA)")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Dieses Projekt befasst sich mit dem automatisierten Tierdatenaustausch. 
+
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"### Software-System für den automatisierten Datenaustausch (SSAD)")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Das Endprodukt dieses Projektes
+
 
 
 ```{r echo=FALSE,results='asis'}
@@ -239,9 +263,9 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Bei ICAR läuft das Projekt "ICAR-ADE" mit dem Ziel eine Grundlage für den automatisierten Austausch von Tierdaten zu erstellen. Im Projekt "ICAR-ADE" wird eine eigenständige Lösung für den automatischen Austausch von Tierdaten angestrebt. Das heisst es werden neue Datentypen und Schnittstellen aufgrund von existierenden Standards von W3C, UNCEFACT oder ISO definiert. Diese Definitionen dienen dann als Grundlage für eine unabhängige Umsetzung des Datenaustauschs. Der Vorteil dieser Lösung ist die Unabhängigkeit von bestehenden Lösungen und all ihren Einschränkungen. Als offensichtlicher Nachteil ist die Redundanz mit schon bestehenden Datenaustauschlösungen zu betrachten. Dieser Nachteil führt auch dazu, dass eine  Umsetzung des Projekts sehr viel zeitaufwändig ist. Da das Projekt "ICAR-ADE" immer noch in der technischen Planungsphase steckt, wird die Umsetzung einer konkreten Lösung noch eine Weile auf sich warten lassen.
+Bei ICAR läuft das Projekt "ICAR-ADE" mit dem Ziel eine Grundlage für den automatisierten Austausch von Tierdaten zu erstellen. Im Projekt "ICAR-ADE" wird eine eigenständige Lösung für den automatischen Austausch von Tierdaten angestrebt. Das heisst es werden neue Datentypen und Schnittstellen aufgrund von existierenden Standards von W3C, UNCEFACT oder ISO definiert. Diese Definitionen dienen dann als Grundlage für eine unabhängige Umsetzung des Datenaustauschs. Der Vorteil dieser Lösung ist die Unabhängigkeit von bestehenden Lösungen und all ihren Einschränkungen. Ein offensichtlicher Nachteil ist die Redundanz mit anderen schon bestehenden Datenaustauschlösungen. Dieser Nachteil führt dazu, dass eine  Umsetzung des Projekts sehr zeitaufwändig ist. Da das Projekt "ICAR-ADE" immer noch in der technischen Planungsphase steckt, wird die Umsetzung einer konkreten Lösung noch eine Weile auf sich warten lassen.
 
-Da das Projekt "ICAR-ADE" noch in der Anfangsphase steckt und somit der automatisierten Datenaustausch mittelfristig noch nicht zur Verfügung steht, haben sich die Zuchtverbände BVCH und SHB entschieden, selber ein nationales Projekt mit dem Ziel des automatisierten Datenaustauschs zu starten. Dieses Projekt nennen wir hier "ATDA-BvchShb". Im folgenden Text wird das Projekt "ATDA-BvchShb" genauer beschrieben werden.
+Da das Projekt "ICAR-ADE" noch in der Anfangsphase steckt und somit der automatisierten Datenaustausch mittelfristig noch nicht zur Verfügung steht, haben sich die Zuchtorganisationen BVCH und SHB entschieden, selber ein nationales Projekt mit dem Ziel des automatisierten Datenaustauschs zu starten. Dieses Projekt nennen wir hier "ATDA-BvchShb". Im folgenden Text wird das Projekt "ATDA-BvchShb" genauer beschrieben werden.
 
 
 \vspace{1ex}
@@ -277,17 +301,25 @@ objSecEnum$displayNumSection()
 Der automatisierte Datentransfer zwischen Melksystemen und ARGUS soll in beiden Richtungen, also nicht nur vom Melksystem zu ARGUS sondern auch von ARGUS zum Melksystem funktionieren. Somit können bei einer Neuinstallation einer Melkanalage die Daten von ARGUS ins Informationssystem der Melkanlage übertragen werden.
 
 
+\vspace{1ex}
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"# Geplanter Ablauf des Datentransfers")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Für die in diesem Projekt berücksichtigten Betriebe laufen die Milchkontrollen gleich ab wie für alle anderen Betriebe, ausser dass der Milchkontrolleur die Milchleistungsdaten nicht mehr auf das vorgedruckte Formular einträgt. Auf dem vorgedruckten Formular von Qualitas werden nur noch  Zugänge, Abgänge oder Änderungen des Laktationsstatus von Kühen erfasst. Die Erfassung dieser Mutationen dient als Kontrolle für das System des automatisierten Datentransfers.
+
+Das Datum der Milchkontrolle dient als Stichdatum für den automatisierten Datentransfer der Milchleistungsdaten. Sobald die Milchanalyseergebnisse für einen bestimmten Betrieb bei Qualitas eingetroffen sind, wird der Datentransfer der Milchmengen für den entsprechenden Betrieb ausgelöst. 
+
 
 \vspace{1ex}
 ```{r echo=FALSE,results='asis'}
 objSecEnum$setUnNumSection(psUnNumSection = 
-"# Ablauf des Datentransfers")
+"# Datenkonsistenz")
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Für die in diesem Projekt berücksichtigten Betriebe laufen die Milchkontrollen gleich ab wie für alle anderen Betriebe, ausser dass der Milchkontrolleur die Milchleistungsdaten nicht mehr auf das vorgedruckte Formular einträgt. Auf dem vorgedruckten Formular von Qualitas werden nur noch  Zugänge, Abgänge oder Änderungen des Laktationsstatus von Kühen erfasst. 
-
-Das Datum der Milchkontrolle dient als Stichdatum für den automatisierten Datentransfer der Milchleistungsdaten. Sobald die Milchanalyseergebnisse für einen bestimmten Betrieb bei Qualitas eingetroffen sind, wird der Datentransfer der Milchmengen für den entsprechenden Betrieb ausgelöst. 
 
 
 \vspace{1ex}
@@ -297,5 +329,5 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-In diesem Projekt beschränken wir uns auf den Austausch von Milchleistungsdaten zwischen Roboteranlagen und dem Datenbanksystem ARGUS von Qualitas. Der Austausch von weiteren Daten wird in anderen Projekten umgesetzt werden. 
+In diesem Projekt beschränken wir uns auf den Austausch von Milchleistungsdaten zwischen Melkanlagen und dem Datenbanksystem ARGUS von Qualitas. Der Austausch von weiteren Daten wird in anderen Projekten umgesetzt werden. 
 
