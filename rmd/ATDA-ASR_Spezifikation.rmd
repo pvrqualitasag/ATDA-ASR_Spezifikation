@@ -238,7 +238,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Die Standardprozedur für den Transfer von Milchleistungsdaten bei Betrieben, welche sich bei der Milchleistungsprüfung der Zuchtverbände (BVCH und SHB) beteiligen, sieht so aus, dass ein Milchkontrolleur monatlich Milchproben und gemessene Milchmengen von einem Betrieb abholt. Die Milchmengen werden während der Kontrolle auf dem Betrieb manuell auf vorgedruckte Formulare eingetragen. Die ausgefüllten Formulare werden dann an die Zuchtorganisationen geschickt und dort per Scanner in das Informationssystem (ARGUS) von Qualitas eingelesen. Das nachfolgende Diagramm versucht den Datenfluss anlässlich einer Milchkontrolle auf einem Betrieb schematisch darzustellen. 
+Die Standardprozedur für den Transfer von Milchleistungsdaten bei Betrieben, welche sich bei der Milchleistungsprüfung der Zuchtverbände (BVCH und SHB) beteiligen, sieht so aus, dass ein Milchkontrolleur monatlich Milchproben und gemessene Milchmengen von einem Betrieb abholt. Die Milchmengen werden während der Kontrolle auf dem Betrieb manuell auf vorgedruckte Formulare eingetragen. Die ausgefüllten Formulare werden dann an die Zuchtorganisationen geschickt und dort per Scanner in das Informationssystem (ARGUS) von Qualitas eingelesen. Das nachfolgende Diagramm versucht den Datenfluss anlässlich einer Milchkontrolle auf einem Betrieb schematisch darzustellen. Der Datenfluss verläuft nach der Reihenfolge der Nummern. Auf die Bedeutung der einzelnen Nummern wird später noch erklärt werden.
 
 ![Diagramm Milchdatenfluss](Diagramm_Milchdatenfluss.pdf)
 
