@@ -4,13 +4,14 @@ output: pdf_document
 
 ```{r GenerateDiagrams,echo=FALSE,results='hide'}
 #vOdgFiles <- c('Diagramm_Milchdatenfluss.odg', 'Diagramm_Milchdatenfluss_ATDA.odg')
-sFigDirWin <- '..\\odg'
+sOdgDirWin <- '..\\odg'
+sOdgDir <- "../odg"
 sFigDirOut <- "."
-vOdgFiles <- list.files(path = sFigDirOut, pattern = ".odg$")
+vOdgFiles <- list.files(path = sOdgDir, pattern = ".odg$")
 sConvCmdStem <- '"C:/Program Files (x86)/LibreOffice 5/program/soffice" --headless --convert-to pdf'
 
 convertOdgToPdf <- function(psOdgFile){
-  sFigFile <- paste(sFigDirWin, psOdgFile, sep = "\\")
+  sFigFile <- paste(sOdgDirWin, psOdgFile, sep = "\\")
   sConvCommand <- paste(sConvCmdStem, sFigFile)
   system(command = sConvCommand)
   sPdfFile <- gsub("odg$", "pdf", psOdgFile)
