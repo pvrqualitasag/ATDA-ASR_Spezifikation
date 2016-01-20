@@ -4,8 +4,8 @@ output: pdf_document
 
 ```{r GenerateDiagrams,echo=FALSE,results='hide'}
 #vOdgFiles <- c('Diagramm_Milchdatenfluss.odg', 'Diagramm_Milchdatenfluss_ATDA.odg')
-sFigDirWin <- '..\\fig'
-sFigDirOut <- "../fig"
+sFigDirWin <- '..\\odg'
+sFigDirOut <- "."
 vOdgFiles <- list.files(path = sFigDirOut, pattern = ".odg$")
 sConvCmdStem <- '"C:/Program Files (x86)/LibreOffice 5/program/soffice" --headless --convert-to pdf'
 
@@ -117,7 +117,7 @@ objSecEnum <- SectionEnumerator$new()
 objSecEnum$initSectionEnumerator()
 ```
 
-![Qualitas-Logo](../fig/QualitasLogo.png)
+![Qualitas-Logo](../png/QualitasLogo.png)
 
 \fcolorbox{black}{white}{
 	\parbox[t]{1.0\linewidth}{
@@ -147,7 +147,7 @@ objSecEnum$initSectionEnumerator()
 \vspace*{1cm}
 
 \begin{center}
-\includegraphics[width=0.5\textwidth]{../fig/Pedigree.png}
+\includegraphics[width=0.5\textwidth]{../png/Pedigree.png}
 \end{center}
 
 \vspace{5ex}
@@ -239,7 +239,7 @@ objSecEnum$displayNumSection()
 ```
 Die Standardprozedur für den Transfer von Milchleistungsdaten bei Betrieben, welche sich bei der Milchleistungsprüfung der Zuchtverbände (BVCH und SHB) beteiligen, sieht so aus, dass ein Milchkontrolleur monatlich Milchproben und gemessene Milchmengen von einem Betrieb abholt. Die Milchmengen werden während der Kontrolle auf dem Betrieb manuell auf vorgedruckte Formulare eingetragen. Die ausgefüllten Formulare werden dann an die Zuchtorganisationen geschickt und dort per Scanner in das Informationssystem (ARGUS) von Qualitas eingelesen. Das nachfolgende Diagramm versucht den Datenfluss anlässlich einer Milchkontrolle auf einem Betrieb schematisch darzustellen. 
 
-![Diagramm Milchdatenfluss](../fig/Diagramm_Milchdatenfluss.pdf)
+![Diagramm Milchdatenfluss](Diagramm_Milchdatenfluss.pdf)
 
 Betriebe mit Robotermelkanlagen oder mit Melkständen, bei welchen die Milchmengen durch ein Informationssystem vollautomatisch erfasst werden, unterliegen bezüglich des Datentransfers der gleichen  Standardprozedur, mit Ausnahme, dass die Milchmengen nicht von den Kontrolleuren gemessen werden, sondern aus dem Informationssystem der Melkanlage abgerufen werden. Die Milchmengendaten werden vom Kontrolleur manuell vom Informationssystem der Melkanlage auf das Formular übertragen, welches dann bei der Zuchtorganisation wieder eingescannt wird. Die manuelle Übertragung der Daten auf das Formular ist zeitaufwändig, fehleranfällig und unnötig. Ein Ziel dieses Projektes ist, die manuelle Datenübertragung durch eine direkte elektronische Übertragung der Milchmengendaten zwischen dem Informationssystem der Melkanlage und dem Informationssystem bei Qualitas (ARGUS) zu ersetzen. 
 
@@ -383,7 +383,7 @@ objSecEnum$displayNumSection()
 ```
 Das folgende Schema gibt einen Überblick über den geplanten Ablauf des ATDA. Der Datenfluss läuft gemäss der Reihenfolge der Nummern im Schema ab. Vor der Milchkontrolle erhält der Kontrolleur das Material für die Kontrolle (Schritt 1). Im Schritt 2 führt der Kontrolleur die Milchkontrolle zu einem bestimmten Datum (entspricht dem Stichdatum für die Datenübertragung der Milchmengendaten) auf einem Betrieb durch. Bei der Milchkontrolle werden durch den Milchkontrolleur keine Milchmengendaten mehr erhoben. Stattdessen werden auf den vorgedruckten Formularen für den kontrollierten Betrieb die Mutationen (Zugänge und Abgänge) von Kühen sowie die Änderungen der Laktationsstati (trocken gestellt oder gekalbt) von Kühen erfasst. Das ausgefüllte Formular wird der ZO zugestellt und die Milchproben werden an das Milchlabor gesendet (Schritt 3). Im Schritt 4 liefert das Milchlabor die Analyseergebnisse an Qualitas.
 
-![Ablauf Datentransfer](../fig/Diagramm_Milchdatenfluss_ATDA.pdf)
+![Ablauf Datentransfer](Diagramm_Milchdatenfluss_ATDA.pdf)
 
 Das Eintreffen der Milchanalyseergebnisse bei Qualitas für den kontrollierten Betrieb ist der Auslöser für den ATDA zwischen ARGUS und dem ISM des kontrollierten Betriebs (Schritt 5). Das Datum der Milchkontrolle wird als Stichdatum für den ATDA verwendet. 
 
