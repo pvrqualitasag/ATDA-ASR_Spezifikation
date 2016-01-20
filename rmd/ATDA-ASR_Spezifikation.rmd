@@ -8,10 +8,14 @@ sOdgDirWin <- '..\\odg'
 sOdgDir <- "../odg"
 sFigDirOut <- "."
 vOdgFiles <- list.files(path = sOdgDir, pattern = ".odg$")
-sConvCmdStem <- '"C:/Program Files (x86)/LibreOffice 5/program/soffice" --headless --convert-to pdf'
+sConvCmdStem <- ifelse(.Platform$OS.type == "windows", 
+                       '"C:/Program Files (x86)/LibreOffice 5/program/soffice" --headless --convert-to pdf',
+                       "soffice --headless --convert-to pdf")
 
 convertOdgToPdf <- function(psOdgFile){
-  sFigFile <- paste(sOdgDirWin, psOdgFile, sep = "\\")
+  sFigFile <- ifelse(.Platform$OS.type == "windows",
+                     paste(sOdgDirWin, psOdgFile, sep = "\\"),
+                     file.path(sOdgDir, psOdgFile))
   sConvCommand <- paste(sConvCmdStem, sFigFile)
   system(command = sConvCommand)
   sPdfFile <- gsub("odg$", "pdf", psOdgFile)
