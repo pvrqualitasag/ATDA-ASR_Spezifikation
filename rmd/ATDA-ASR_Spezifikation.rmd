@@ -183,6 +183,9 @@ AG ZT DL, ASR                        &  FB EDV, Qualitas AG\\
 |             |                  |       |  gewechselt. Beschreibung der                |
 |             |                  |       |  Projektkomponenten und des Projektablaufs   |
 +-------------+------------------+-------+----------------------------------------------+
+|  0.0.0.904  |  20.01.2016      |  PvR  |  Varianten der Datenübertragung              |
+|             |                  |       |  Plan des Projektablaufs                     |
++-------------+------------------+-------+----------------------------------------------+
 
 
 
@@ -220,6 +223,8 @@ AG ZT DL, ASR                        &  FB EDV, Qualitas AG\\
 | ZO          |  Zuchtorganisation                                                      |
 +-------------+-------------------------------------------------------------------------+
 | SSAD        |  Software-System für den automatisierten Datenaustausch                 |
++-------------+-------------------------------------------------------------------------+
+| API         |  Application Programming Interface                                      |
 +-------------+-------------------------------------------------------------------------+
 
 
@@ -412,16 +417,36 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Diese Version entspricht im wesentlichen der Umsetzung der im Projet `ICAR-ADE` definierten Datentypen und Schnittstellen in einem eigenständigen Webservice. Der Webservice wird periodisch vom ISM kontaktiert und so wird die Datenübertragung initiiert. Da die Datenübertragung vom ISM initiiert wird, muss auf dem ISM ein Programm laufen, welche die initiale Verbindungsaufnahme startet. 
+Diese Version entspricht im wesentlichen der Umsetzung der im Projekt `ICAR-ADE` definierten Datentypen und Schnittstellen in einem eigenständigen Webservice. Dieser Webservice wird von Qualitas zur Verfügung gestellt und läuft auf einem Server von Qualitas. Die Datenübertragung wird von einem Client-Programm auf dem ISM gestartet. Dieses Programm kontaktiert den Webservice, welcher als Antwort die Definition der zu übertragenden Datenrecords zurückgibt. Aufgrund der Definition der Datenrecords werden die entsprechenden Daten an Qualitas gesendet. Da die Datenübertragung vom Client-Programm des ISM initiiert wird, muss auf dem ISM das entsprechende Client-Programm, welches den Datenaustausch mit dem Webservice bei Qualitas initiiert, installiert sein. 
 
 \vspace{1ex}
 ```{r echo=FALSE,results='asis'}
 objSecEnum$setUnNumSection(psUnNumSection = 
-"## Fernwartungsprogramme")
+"## Fernwartungssoftware")
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Die Techniker der Anbieter der Melkanlagen verfügen über einen Zugang von einem Remote-Standort auf das ISM. Dieser Zugang von extern auf das ISM wird mittels sogenannter Fernwartungsprogramme ermöglicht. In der Regel erlauben diese Fernwartungsprogramme auch den Austausch von Dateien zwischen den beiden Systemen, welche miteinander in Verbindung stehen. 
+Die Techniker der Anbieterfirmen der Melkanlagen verfügen über einen Zugang von einem Remote-Standort auf das ISM. Dieser Zugang von extern auf das ISM wird mittels sogenannter Fernwartungssoftware ermöglicht. In der Regel erlauben diese Fernwartungsprogramme auch den Austausch von Dateien zwischen den beiden Systemen, welche miteinander in Verbindung stehen. 
+
+Damit der Datentransfer mithilfe einer Ferwartungssoftware ohne manuelle Intervention umgesetzt werden kann, muss die Steuerung der Fernwartungssoftware von einem Programm aus möglich sein. Dies wird über ein von den Anbietern der Fernwartungssoftware zur Verfügung gestellte Schnittstelle - dem sogenannten API - realisiert. Das API besteht aus einer Spezifikation der Funktionalitäten der Fernwartungssoftware, welche von einem externen Programm verwendet werden können. 
+Die Umsetzung dieser Lösung für den Datentransfer wäre sehr viel einfacher, wenn alle Hersteller die gleiche Fernwartungssoftware verwenden würden. Eine Abklärung diesbezüglich hat allerdings ergeben, dass verschiedene Fernwartungssoftwareprodukte zum Einsatz kommen. Die folgende Tabelle gibt eine Übersicht über die verwendeten Fernwartungsprogramme
+
++-----------+-----------------------------------+--------------------------------------+
+| Anbieter  |  Verwendete Fernwartungssoftware  |  Bemerkung                           |
++===========+===================================+======================================+
+| DeLaval   |  Teamviewer                       |  für existierende Installationen     |
++-----------+-----------------------------------+--------------------------------------+
+|           |  LogMeIn                          |  für Neuinstallationen               |
++-----------+-----------------------------------+--------------------------------------+
+| Lelly     |  NA                               |                                      |
++-----------+-----------------------------------+--------------------------------------+
+| GEA       |  FarmView                         |  Verschlüsselungsrouter beim Kunden  |
++-----------+-----------------------------------+--------------------------------------+
+|           |  AnyDesk                          |  Testeinsatz                         |
++-----------+-----------------------------------+--------------------------------------+
+| Fullwood  |  NA                               |                                      |
++-----------+-----------------------------------+--------------------------------------+
+
 
 \vspace{1ex}
 ```{r echo=FALSE,results='asis'}
