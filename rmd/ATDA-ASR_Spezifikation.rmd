@@ -186,7 +186,9 @@ AG ZT DL, ASR                        &  FB EDV, Qualitas AG\\
 |  0.0.0.904  |  20.01.2016      |  PvR  |  Varianten der Datenübertragung              |
 |             |                  |       |  Plan des Projektablaufs                     |
 +-------------+------------------+-------+----------------------------------------------+
-
+|  0.0.0.905  |  21.01.2016      |  PvR  |  Ergänzung des Abschnitts Erklärung          |
+|             |                  |       |  Plan des Projektablaufs                     |
++-------------+------------------+-------+----------------------------------------------+
 
 
 # Abkürzungen
@@ -232,6 +234,8 @@ AG ZT DL, ASR                        &  FB EDV, Qualitas AG\\
 # Erklärung
 Dieses Dokument enthält die Spezifikation für das Projekt zum automatisierten Tierdatenaustausch (ATDA), welches von der Arbeitsgruppe zuchttechnische Dienstleistungen der Arbeitsgemeinschaft Schweizer Rinderzüchter (ASR) in Auftrage gegeben wurde.
 
+Da die Umsetzung dieses Projektes sehr stark von den Gegebenheiten, wie sie bei den Anbietern der Melkanlagen herrschen, abhängen, ist diese Spezifikation in gewissen Abschnitten noch nicht sehr konkret gefasst. Dies ist auf der einen Seite eine bewusste Entscheidung, welche die Offenheit und die Flexibilität von unserer Seite her demonstrieren soll. Auf der anderen Seite ist das erste Informationstreffen mit den wichtigsten Anbietern von Melkanlagen auf den 18. März 2016 angesetzt. Vor diesem Treffen fehlen uns schlicht und einfach viele Informationen, welche für eine konkretere Ausformulierung dieser Spezifikation, nötig wären. 
+
 
 
 \vspace{1ex}
@@ -247,11 +251,11 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Die Standardprozedur für den Transfer von Milchleistungsdaten bei Betrieben, welche sich bei der Milchleistungsprüfung der Zuchtverbände (BVCH und SHB) beteiligen, sieht so aus, dass ein Milchkontrolleur monatlich Milchproben und gemessene Milchmengen von einem Betrieb abholt. Die Milchmengen werden während der Kontrolle auf dem Betrieb manuell auf vorgedruckte Formulare eingetragen. Die ausgefüllten Formulare werden dann an die Zuchtorganisationen geschickt und dort per Scanner in das Informationssystem (ARGUS) von Qualitas eingelesen. Das nachfolgende Diagramm versucht den Datenfluss anlässlich einer Milchkontrolle auf einem Betrieb schematisch darzustellen. Der Datenfluss verläuft nach der Reihenfolge der Nummern. Auf die Bedeutung der einzelnen Nummern wird später noch erklärt werden.
+Die Standardprozedur für den Transfer von Milchleistungsdaten bei Betrieben, welche sich bei der Milchleistungsprüfung der Zuchtverbände (BVCH und SHB) beteiligen, sieht so aus, dass ein Milchkontrolleur monatlich Milchproben und gemessene Milchmengen von einem Betrieb abholt. Die Milchmengen werden während der Kontrolle auf dem Betrieb manuell auf vorgedruckte Formulare eingetragen. Die ausgefüllten Formulare werden dann an die Zuchtorganisationen geschickt und dort per Scanner in das Informationssystem (ARGUS) von Qualitas eingelesen. Das nachfolgende Diagramm versucht den Datenfluss anlässlich einer Milchkontrolle auf einem Betrieb schematisch darzustellen. Der Datenfluss verläuft nach der Reihenfolge der Nummern. Die Bedeutung der einzelnen Nummern wird später noch erklärt werden.
 
 ![Diagramm Milchdatenfluss](Diagramm_Milchdatenfluss.pdf)
 
-Betriebe mit Robotermelkanlagen oder mit Melkständen, bei welchen die Milchmengen durch ein Informationssystem vollautomatisch erfasst werden, unterliegen bezüglich des Datentransfers der gleichen  Standardprozedur, mit Ausnahme, dass die Milchmengen nicht von den Kontrolleuren gemessen werden, sondern aus dem Informationssystem der Melkanlage abgerufen werden. Die Milchmengendaten werden vom Kontrolleur manuell vom Informationssystem der Melkanlage auf das Formular übertragen, welches dann bei der Zuchtorganisation wieder eingescannt wird. Die manuelle Übertragung der Daten auf das Formular ist zeitaufwändig, fehleranfällig und unnötig. Ein Ziel dieses Projektes ist, die manuelle Datenübertragung durch eine direkte elektronische Übertragung der Milchmengendaten zwischen dem Informationssystem der Melkanlage und dem Informationssystem bei Qualitas (ARGUS) zu ersetzen. 
+Betriebe mit Robotermelkanlagen oder mit Melkständen, bei welchen die Milchmengen durch ein Informationssystem vollautomatisch erfasst werden, unterliegen bezüglich des Datentransfers der gleichen  Standardprozedur, mit Ausnahme, dass die Milchmengen nicht von den Kontrolleuren gemessen werden, sondern aus dem Informationssystem der Melkanlage abgerufen werden. Die Milchmengendaten werden vom Kontrolleur manuell vom Informationssystem der Melkanlage auf das Formular übertragen. Dieses Formular wird bei der Zuchtorganisation eingescannt. Die manuelle Übertragung der Daten auf das Formular ist zeitaufwändig, fehleranfällig und unnötig. Ein Ziel dieses Projektes ist, die manuelle Datenübertragung durch eine direkte elektronische Übertragung der Milchmengendaten zwischen dem Informationssystem der Melkanlage und dem Informationssystem bei Qualitas (ARGUS) zu ersetzen. 
 
 
 ```{r echo=FALSE,results='asis'}
@@ -373,12 +377,12 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Der Datentransfer beinhaltet die Übertragung der exportierten Daten vom ISM zu ARGUS. Für die Übertragung von Daten zwischen zwei Informationssystemem gibt es eine grosse Anzahl von schon existierenden Lösungen. Zum aktuellen Zeitpunkt sind für dieses Projekt `ATDA-ASR` grundsätzlich zwei verschiedene Arten der Datenübertragung denkbar. Diese beiden Arten werden in einem späteren Abschnitt noch genauer beschrieben.
+Der Datentransfer beinhaltet die Übertragung der exportierten Daten vom ISM zu ARGUS. Für die Übertragung von Daten zwischen zwei Informationssystemem gibt es schon existierenden Lösungen. Zum aktuellen Zeitpunkt sind für dieses Projekt `ATDA-ASR` grundsätzlich zwei verschiedene Arten der Datenübertragung denkbar. Diese beiden Arten werden in einem späteren Abschnitt (siehe Abschnitt 4) noch genauer beschrieben.
 
 \vspace{1ex}
 ```{r echo=FALSE,results='asis'}
 objSecEnum$setUnNumSection(psUnNumSection = 
-"### Import der transerierten Daten in ARGUS")
+"### Import der transferierten Daten in ARGUS")
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
@@ -447,6 +451,10 @@ Die Umsetzung dieser Lösung für den Datentransfer wäre sehr viel einfacher, w
 | Fullwood  |  NA                               |                                      |
 +-----------+-----------------------------------+--------------------------------------+
 
+Die Anzahl an verschiedenen Fernwartungsprogrammen erschwert uns die Verwendung dieser Programme für den Datenaustausch. Zusätzlich zur Anzahl der eingesetzten Fernwartungslösungen kommt noch hinzu, dass allfällige Wechsel der eingesetzten Programme oder Updates von bestehenden Programmen für uns zu einem grossen Arbeitsaufwand führen und potentielle Fehlerquellen dadurch nur schwer zu kontrollieren sind.
+
+Die einzige Möglichkeit, wie diese Art des Datentransfers für uns noch praktikabel wäre, ist, dass uns die Anbieter erlauben würden, eine einheitliche Ferwartungslösung neben den bestehenden Programmen zu installieren. 
+
 
 \vspace{1ex}
 ```{r echo=FALSE,results='asis'}
@@ -455,7 +463,9 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
+Das folgende Diagramm gibt eine ungefähre Aufteilung der verschiedenen Themen auf die Zeit der ersten Hälfte des Jahres 2016. Eine Planung darüber hinaus ist vor dem ersten Treffen mit den Anbietern der Melkanlagen sehr schwierig.
 
+![Projektplan](Projektablaufplan.pdf)
 
 
 \vspace{1ex}
