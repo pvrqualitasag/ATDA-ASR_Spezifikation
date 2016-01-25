@@ -3,11 +3,9 @@ output: pdf_document
 ---
 
 ```{r GenerateDiagrams,echo=FALSE,results='hide'}
-#vOdgFiles <- c('Diagramm_Milchdatenfluss.odg', 'Diagramm_Milchdatenfluss_ATDA.odg')
 sOdgDirWin <- '..\\odg'
 sOdgDir <- "../odg"
 sFigDirOut <- "."
-vOdgFiles <- list.files(path = sOdgDir, pattern = ".odg$")
 sConvCmdStem <- ifelse(.Platform$OS.type == "windows", 
                        '"C:/Program Files (x86)/LibreOffice 5/program/soffice" --headless --convert-to pdf',
                        "soffice --headless --convert-to pdf")
@@ -23,11 +21,12 @@ convertOdgToPdf <- function(psOdgFile){
   file.rename(from = sPdfFile, sFigOutFile)
 }
 
-for (sOdgFn in vOdgFiles){
-  convertOdgToPdf(psOdgFile=sOdgFn)
-}
-#system('"C:/Program Files (x86)/LibreOffice 5/program/soffice" --headless --convert-to pdf  #..\\fig\\Diagramm_Milchdatenfluss.odg')
-#file.rename(from = "Diagramm_Milchdatenfluss.pdf", to = "../fig/Diagramm_Milchdatenfluss.pdf")
+# LibreOffice draw files
+vOdgFiles <- list.files(path = sOdgDir, pattern = ".odg$")
+sapply(vOdgFiles, convertOdgToPdf)
+# LibreOffice calc files
+vOdsFiles <- list.files(path = sOdgDir, pattern = ".ods$")
+sapply(vOdsFiles, convertOdgToPdf)
 ```
 
 ```{r SectionNumber, echo=FALSE,results='hide'}
@@ -189,6 +188,8 @@ AG ZT DL, ASR                        &  FB EDV, Qualitas AG\\
 |  0.0.0.905  |  21.01.2016      |  PvR  |  Ergänzung des Abschnitts Erklärung          |
 |             |                  |       |  Plan des Projektablaufs                     |
 +-------------+------------------+-------+----------------------------------------------+
+|  0.0.0.906  |  25.01.2016      |  PvR  |  Ergänzung des Projektablaufplans            |
++-------------+------------------+-------+----------------------------------------------+
 
 
 # Abkürzungen
@@ -232,9 +233,9 @@ AG ZT DL, ASR                        &  FB EDV, Qualitas AG\\
 
 
 # Erklärung
-Dieses Dokument enthält die Spezifikation für das Projekt zum automatisierten Tierdatenaustausch (ATDA), welches von der Arbeitsgruppe zuchttechnische Dienstleistungen der Arbeitsgemeinschaft Schweizer Rinderzüchter (ASR) in Auftrage gegeben wurde.
+Dieses Dokument enthält die Spezifikation für das Projekt zum automatisierten Tierdatenaustausch (ATDA), welches von der Arbeitsgruppe zuchttechnische Dienstleistungen der Arbeitsgemeinschaft Schweizer Rinderzüchter (ASR) in Auftrag gegeben wurde.
 
-Da die Umsetzung dieses Projektes sehr stark von den Gegebenheiten, wie sie bei den Anbietern der Melkanlagen herrschen, abhängen, ist diese Spezifikation in gewissen Abschnitten noch nicht sehr konkret gefasst. Dies ist auf der einen Seite eine bewusste Entscheidung, welche die Offenheit und die Flexibilität von unserer Seite her demonstrieren soll. Auf der anderen Seite ist das erste Informationstreffen mit den wichtigsten Anbietern von Melkanlagen auf den 18. März 2016 angesetzt. Vor diesem Treffen fehlen uns schlicht und einfach viele Informationen, welche für eine konkretere Ausformulierung dieser Spezifikation, nötig wären. 
+Da die Umsetzung dieses Projektes sehr stark von den technischen Gegebenheiten der Anbieter von Melkanlagen abhängt, ist diese Spezifikation in gewissen Abschnitten noch nicht sehr konkret gefasst. Dies ist eine bewusste Entscheidung, welche die Offenheit und die Flexibilität von unserer Seite her demonstrieren soll. Das erste Informationstreffen mit den Anbietern von Melkanlagen ist auf den 18. März 2016 angesetzt. Vor diesem Treffen fehlen uns die Informationen, welche für eine konkretere Ausformulierung dieser Spezifikation und eine seriöse Planung des Projektes für den Zeitraum nach dem 18.3.2016, nötig wären. 
 
 
 
@@ -251,7 +252,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Die Standardprozedur für den Transfer von Milchleistungsdaten bei Betrieben, welche sich bei der Milchleistungsprüfung der Zuchtverbände (BVCH und SHB) beteiligen, sieht so aus, dass ein Milchkontrolleur monatlich Milchproben und gemessene Milchmengen von einem Betrieb abholt. Die Milchmengen werden während der Kontrolle auf dem Betrieb manuell auf vorgedruckte Formulare eingetragen. Die ausgefüllten Formulare werden dann an die Zuchtorganisationen geschickt und dort per Scanner in das Informationssystem (ARGUS) von Qualitas eingelesen. Das nachfolgende Diagramm versucht den Datenfluss anlässlich einer Milchkontrolle auf einem Betrieb schematisch darzustellen. Der Datenfluss verläuft nach der Reihenfolge der Nummern. Die Bedeutung der einzelnen Nummern wird später noch erklärt werden.
+Die Standardprozedur für den Transfer von Milchleistungsdaten von Betrieben, welche sich bei der Milchleistungsprüfung der Zuchtverbände (BVCH und SHB) beteiligen, sieht so aus, dass ein Milchkontrolleur monatlich Milchproben und gemessene Milchmengen von einem Betrieb abholt. Die Milchmengen werden während der Kontrolle auf dem Betrieb manuell auf vorgedruckte Formulare eingetragen. Die ausgefüllten Formulare werden dann an die Zuchtorganisationen geschickt und dort per Scanner in das Informationssystem (ARGUS) von Qualitas eingelesen. Das nachfolgende Diagramm versucht den Datenfluss anlässlich einer Milchkontrolle auf einem Betrieb schematisch darzustellen. Der Datenfluss verläuft gemäss der Reihenfolge der Nummern. Die Bedeutung der einzelnen Nummern wird später noch erklärt werden.
 
 ![Diagramm Milchdatenfluss](Diagramm_Milchdatenfluss.pdf)
 
@@ -463,7 +464,11 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Das folgende Diagramm gibt eine ungefähre Aufteilung der verschiedenen Themen auf die Zeit der ersten Hälfte des Jahres 2016. Eine Planung darüber hinaus ist vor dem ersten Treffen mit den Anbietern der Melkanlagen sehr schwierig.
+Das folgende Diagramm zeigt einen ungefähren Plan, wie sich die bis zu aktuellen Zeitpunkt bekannten Themen auf das erste Halbjahr 2016 aufteilen lassen. Wichtig ist die Tatsache, dass dieser Projektpan nicht Mitte 2016 aufhört, weil das Projekt dann abgeschlossen sein wird, sondern, weil wir aufgrund des aktuellen Informationsstandes den weiteren Projektverlauf für das zweite Halbjahr 2016 aktuell noch nicht planen können. 
+
+Ein wichtiger Termin in der Projektplanung von ATDA-ASR (siehe gelber markierte Kolonne im Diagramm) stellt der 18.3.2016 dar. An diesem Datum findet ein Treffen am runden Tisch mit allen Anbietern der Melkrobotern statt. Dieses Treffen dient dazu, technische Fragen zu klären, welche die Umsetzung des Datentransfers wesentlich beeinflussen. Vor diesem Treffen ist somit eine konkrete Planung des gesamten Projektes unmöglich. 
+
+In der verbleibenden Zeit vor dem Treffen vom 18.3.2016, konzentrieren wir uns auf erste Abklärungen mit den Melkroboteranbieter, auf die Spezifikation diese Projektes (ATDA-ASR) und auf das Erstellen einer Testumgebung für die Datenübertragung mit einer ausgewählten Fernwartungslösung. Die Planung der Umsetzung der weiteren Projektthemen ist zu diesem Zeitpunkt noch sehr spekulativ, da die konkrete Umsetzung der Datenübertragung von den Ergebnissen des Treffens am 18.3.2016 abhängt. Aus diesem Grund werden im folgenden Plan auch die gelb markierten Themen als Alternativen doppelt geführt.
 
 ![Projektplan](Projektablaufplan.pdf)
 
@@ -475,7 +480,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Die Erfassung der Mutationen und der Änderungen des Laktationsstatus von Kühen auf den jeweiligen Betrieben durch den Milchkontrolleur dient als Kontrolle für das System SSATDA-ASR.
+Die Erfassung der Mutationen und der Änderungen des Laktationsstatus von Kühen auf den jeweiligen Betrieben durch den Milchkontrolleur dient als Kontrolle für das System SSATDA-ASR. Die von SSATDA-ASR abgeholten Daten nach einer Milchkontrolle müssen mit den vom Milchkontrolleur erfassten Mutationen und Änderungen des Laktationsstatus von Kühen konsistent sein.
 
 \vspace{1ex}
 ```{r echo=FALSE,results='asis'}
