@@ -159,7 +159,7 @@ objSecEnum$initSectionEnumerator()
 \hfill
 \begin{tabular}{ll}
 Sarah Görlich                        &  Peter von Rohr\\
-AG ZT DL, ASR                        &  FB EDV, Qualitas AG\\
+AG ZDL, ASR                          &  FB EDV, Qualitas AG\\
 \verb+http://www.asr-ch.ch+          &  \verb+http://www.qualitasag.ch+\\
 \verb+sarah.goerlich@qualitasag.ch+  &  \verb+peter.vonrohr@qualitasag.ch+
 \end{tabular}
