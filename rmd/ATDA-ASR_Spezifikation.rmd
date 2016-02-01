@@ -195,6 +195,9 @@ AG ZT DL, ASR                        &  FB EDV, Qualitas AG\\
 |             |                  |       |  geändert. Abschnitt zu Cloud-Lösung          |
 |             |                  |       |  hinzugefügt.                                 | 
 +-------------+------------------+-------+-----------------------------------------------+
+|  0.0.0.908  |  01.02.2016      |  PvR  |  Cloud-Anbieter Microsoft und Apple           |
+|             |                  |       |  hinzugefügt.                                 | 
++-------------+------------------+-------+-----------------------------------------------+
 
 
 # Abkürzungen
@@ -468,7 +471,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Im Zeitalter von "big data" wird häufig von Daten in der Wolke (oder Cloud) gesprochen. Damit ist gemeint, dass sich die Daten physikalisch nicht mehr auf einer für den Benutzer spezifischen Maschine befinden, sondern in einem bestimmten Netzwerk eines Anbieters abgelegt werden. Bekannte öffentliche Anbieter für Cloud-basierte Speicherlösungen sind "Dropbox" oder "Google Drive". Gemäss ersten Abklärungen mit den Herstellern von Melkanlagen bestehen Pläne interne Cloud-Speicherlösungen aufzubauen. 
+Im Zeitalter von "big data" wird häufig von Daten in der Wolke (oder Cloud) gesprochen. Damit ist gemeint, dass sich die Daten physikalisch nicht mehr auf einer für den Benutzer spezifischen Maschine befinden, sondern in einem bestimmten Netzwerk eines Anbieters abgelegt werden. Bekannte öffentliche Anbieter für Cloud-basierte Speicherlösungen sind "Dropbox", "Google Drive", "Microsoft Azure/Onedrive" oder "Apple iCloud". Gemäss ersten Abklärungen mit den Herstellern von Melkanlagen bestehen Pläne bei den Herstellern interne Cloud-Speicherlösungen aufzubauen. 
 
 ```{r echo=FALSE,results='asis'}
 objSecEnum$setUnNumSection(psUnNumSection = 
@@ -484,7 +487,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Bezüglich des Datenaustauschs besteht zwischen den Anbietern von Speicherlösungen keinen Unterschied. In beiden Fällen muss jeder in diesem Projekt (ATDA-ASR) beteiligte Betrieb ein Benutzerkonto beim verwendeten Anbieter des Cloud-Speichers anlegen. Sowohl bei "Dropbox"" als auch bei "Google Drive" wird ein Programm (Client) auf dem Rechner des ISM installiert und mit dem erstellten Benutzerkonto verbunden. Auf dem Rechner des ISM wird ein neues Unterverzeichnis erstellt, dessen Inhalt wird automatisch mit dem Speicher im Netzwerk des Anbieters (Dropbox oder Google) synchronisiert. Die auszutauschenden Daten müssten im neu erstellten Unterverzeichnis abgelegt werden. In den Einstellungen der Clientprogramme der Cloud-Speicher müssten die Daten für ein spezifischen Benutzerkonto von Qualitas freigegeben werden. Durch diese Freigabe können die Daten vom ISM zu Qualitas übertragen werden.
+Bezüglich des Datenaustauschs besteht zwischen den Anbietern von Speicherlösungen keinen Unterschied. In allen Fällen muss jeder in diesem Projekt (ATDA-ASR) beteiligte Betrieb ein Benutzerkonto beim verwendeten Anbieter des Cloud-Speichers anlegen. Danach wird ein Programm (Client) auf dem Rechner des ISM installiert und mit dem erstellten Benutzerkonto verbunden. Auf dem Rechner des ISM wird ein neues Unterverzeichnis erstellt, dessen Inhalt wird automatisch mit dem Speicher im Netzwerk des Anbieters  synchronisiert. Die auszutauschenden Daten müssen im neu erstellten Unterverzeichnis abgelegt werden. In den Einstellungen der Clientprogramme der Cloud-Speicher müssten die Daten für ein spezifischen Benutzerkonto von Qualitas freigegeben werden. Durch diese Freigabe können die Daten vom ISM zu Qualitas übertragen werden.
 
 
 \vspace{1ex}
