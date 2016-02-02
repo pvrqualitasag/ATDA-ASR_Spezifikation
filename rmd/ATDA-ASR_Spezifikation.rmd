@@ -231,6 +231,8 @@ AG ZDL, ASR                          &  FB EDV, Qualitas AG\\
 +-------------+-------------------------------------------------------------------------+
 | UNCEFACT    |  United Nations Center for Trade Fascilitation and Electronic Business  |
 +-------------+-------------------------------------------------------------------------+
+| ISO         |  International Organization for Standardization                         |
++-------------+-------------------------------------------------------------------------+
 | ZO          |  Zuchtorganisation                                                      |
 +-------------+-------------------------------------------------------------------------+
 | SSAD        |  Software-System für den automatisierten Datenaustausch                 |
